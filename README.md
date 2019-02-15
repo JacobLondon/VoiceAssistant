@@ -1,0 +1,1 @@
+Voice operated assistant in Python, currently operated by ` (grave) symbol.
