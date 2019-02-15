@@ -13,7 +13,7 @@ r = sr.Recognizer()
 done = False
 listening = False
 rate = 1 / 60
-keyword = 'ok google'.split()
+keyword = "hey cortana".split()
 talk_key = b'`'
 
 def wait():
@@ -37,15 +37,18 @@ def await_commands():
             audio = r.listen(source)
         try:
             text = r.recognize_google(audio).lower().split()
+            print(text)
 
-            if all(keyword[i] == text[i] for i in range(len(keyword))):
+            # check if the user said the keyword/phrase
+            if keyword == text[:len(keyword)]:
                 if text[2] == 'start':
                     process = text[3]
                     print('Starting:', process)
                     os.startfile(process)
 
-            elif text[2] == 'stop':
+            elif text[0] == 'stop':
                 done = True
+                return
         except:
             print('Failed to complete task.')
 
